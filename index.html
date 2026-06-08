@@ -330,6 +330,52 @@
     .confirm-img.zoomed {
       max-width: 100%;
     }
+
+    /* ── Weather Widgets ── */
+    .weather-widget {
+      margin-top: 14px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(200,169,126,0.2);
+      border-radius: 10px;
+      padding: 12px 14px;
+      font-family: Georgia, serif;
+    }
+    .weather-header {
+      font-size: 10px;
+      letter-spacing: 0.25em;
+      color: #C8A97E;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+    .weather-loading { color: #5a4a36; font-size: 11px; font-style: italic; }
+    .weather-error   { color: #7a3a2a; font-size: 11px; font-style: italic; }
+    .weather-rows { display: flex; flex-wrap: wrap; gap: 8px; }
+    .weather-live { display: flex; gap: 12px; align-items: flex-start; flex-wrap: wrap; margin-top: 8px; }
+    .weather-main { text-align: center; min-width: 80px; }
+    .weather-icon-big { font-size: 32px; display: block; }
+    .weather-temp-big { font-size: 1.6rem; color: #f0e4cc; margin: 2px 0; }
+    .weather-feels { font-size: 10px; color: #7a6a56; }
+    .weather-details { flex: 1; min-width: 140px; }
+    .weather-detail-row { display: flex; justify-content: space-between; font-size: 11px; color: #a89070; padding: 4px 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
+    .weather-updated { font-size: 9px; color: #4a3a28; margin-top: 8px; text-align: right; font-style: italic; }
+    .weather-day {
+      flex: 1;
+      min-width: 80px;
+      background: rgba(255,255,255,0.03);
+      border-radius: 8px;
+      padding: 8px;
+      text-align: center;
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+    .weather-day-label { font-size: 9px; color: #a89070; margin-bottom: 4px; letter-spacing: 0.1em; }
+    .weather-icon  { font-size: 20px; margin: 4px 0; }
+    .weather-temp  { font-size: 11px; color: #f0e4cc; }
+    .weather-uv    { font-size: 10px; border-radius: 4px; padding: 2px 6px; margin-top: 4px; display: inline-block; }
+    .uv-low      { background: #27ae6033; color: #7ec897; }
+    .uv-moderate { background: #f1c40f33; color: #f1c40f; }
+    .uv-high     { background: #e67e2233; color: #e67e22; }
+    .uv-veryhigh { background: #e74c3c33; color: #e74c3c; }
+    .uv-extreme  { background: #8e44ad33; color: #c39bd3; }
   </style>
 </head>
 <body>
@@ -462,6 +508,7 @@
           { time: "📁", text: '<a href="https://drive.google.com/drive/folders/1L7TLAD2yxSarhihiqgoQ4N3mSA1Vg5Fa" target="_blank" style="color:#C8A97E;text-decoration:none;">Milan Hotel Confirmation ↗</a>' },
         ],
         note: null,
+        weatherId: "weather-milan1",
       },
       {
         date: "Fri 3 Jul",
@@ -479,6 +526,7 @@
           { time: "20:00",     text: "🌊 Navigli District — trendy canals, built by Leonardo da Vinci. Lively, vintage. Dinner ⭐⭐⭐" },
           { time: "📁", text: '<a href="https://drive.google.com/drive/folders/1YHC_Fpf-xzcdkm1Q1O7BxfLgVAF2ezxt" target="_blank" style="color:#C8A97E;text-decoration:none;">Train Confirmations ↗</a>' },
         ],
+        weatherId: "weather-milan2",
         note: "Staying at Maggiolina Urban Retreat (check-out 4 Jul). Dinner at Navigli — lively canal-side area, great for evening drinks and food.",
       },
       {
@@ -498,6 +546,7 @@
           { time: "🗺️", text: '<a href="https://maps.app.goo.gl/yPVwkNq3VgJC1zWH9" target="_blank" style="color:#C8A97E;text-decoration:none;">Villa Degli Archi — Google Maps ↗</a>' },
           { time: "📁", text: '<a href="https://drive.google.com/drive/folders/1X5cnT7gPyYw9Ec-TH7cXShIGF-EC5VRP" target="_blank" style="color:#C8A97E;text-decoration:none;">Villa Confirmation ↗</a>' },
         ],
+        weatherId: "weather-tuscany",
         note: "Villa Degli Archi: 7 bed, 4 bath, sleeps 12. Private pool, mountain views, 3 terraces. Nearest airport: Pisa.",
       },
       {
@@ -514,6 +563,7 @@
           { time: "🗺️", text: '<a href="https://maps.app.goo.gl/yPVwkNq3VgJC1zWH9" target="_blank" style="color:#C8A97E;text-decoration:none;">Villa Degli Archi — Google Maps ↗</a>' },
           { time: "📁", text: '<a href="https://drive.google.com/drive/folders/1X5cnT7gPyYw9Ec-TH7cXShIGF-EC5VRP" target="_blank" style="color:#C8A97E;text-decoration:none;">Villa Confirmation ↗</a>' },
         ],
+        weatherId: "weather-tuscany2",
         note: "6 nights at the villa. Base for exploring northern Tuscany / the Garfagnana region.",
       },
       {
@@ -529,6 +579,7 @@
           { time: "Midday",    text: "Scott & Dionne: drive north to the Italian Lakes" },
           { time: "Afternoon", text: "Check in — Lake Como or Lago Maggiore" },
         ],
+        weatherId: "weather-turin",
         note: "The party splits: girls to Turin where Lara AND her parents are waiting; Scott & Dionne head to the lakes.",
       },
       {
@@ -543,6 +594,7 @@
           { time: "🗺️", text: '<a href="https://maps.app.goo.gl/nE4LEx2bsPBJLpEC8" target="_blank" style="color:#C8A97E;text-decoration:none;">Bianca Relais — Google Maps ↗</a>' },
           { time: "📁", text: '<a href="https://drive.google.com/drive/folders/1pyoAldrQA1DMZE2aFytlg3Ail55YyuqA" target="_blank" style="color:#C8A97E;text-decoration:none;">Lakes Hotel Confirmation ↗</a>' },
         ],
+        weatherId: "weather-lakes",
         note: "Scott & Dionne's lake days. Girls, Lara & Lara's parents spending time in Turin.",
       },
       {
@@ -558,6 +610,7 @@
           { time: "🗺️", text: '<a href="https://maps.app.goo.gl/uAP7qW8c9VJAj1jQ9" target="_blank" style="color:#C8A97E;text-decoration:none;">Best Western Linate — Google Maps ↗</a>' },
           { time: "📁", text: '<a href="https://drive.google.com/drive/folders/1fbkQ_XE3ztOn3teRbJMuWc0YFCH9ZJ0Y" target="_blank" style="color:#C8A97E;text-decoration:none;">Best Western Confirmation ↗</a>' },
         ],
+        weatherId: "weather-reunion",
         note: "Best Western Air Hotel Linate — right by the airport. Booking ref: 5663293407. Check-in 13 Jul, check-out 14 Jul.",
       },
       {
@@ -620,6 +673,7 @@
             <div class="items">${itemsHtml}</div>
             ${noteHtml}
             ${confirmHtml}
+            ${day.weatherId ? `<div class="weather-widget" id="${day.weatherId}"><div class="weather-loading">Loading forecast...</div></div>` : ''}
           </div>
         </div>
       `;
@@ -774,6 +828,80 @@
 
     updateTubeMap();
     setInterval(updateTubeMap, 30000);
+
+    // ── Weather Widgets ──
+    const WMO = {
+      0:'☀️ Clear', 1:'🌤️ Mostly Clear', 2:'⛅ Partly Cloudy', 3:'☁️ Overcast',
+      45:'🌫️ Foggy', 48:'🌫️ Icy Fog',
+      51:'🌦️ Light Drizzle', 53:'🌦️ Drizzle', 55:'🌧️ Heavy Drizzle',
+      61:'🌧️ Light Rain', 63:'🌧️ Rain', 65:'🌧️ Heavy Rain',
+      71:'🌨️ Light Snow', 73:'🌨️ Snow', 75:'❄️ Heavy Snow',
+      80:'🌦️ Showers', 81:'🌧️ Showers', 82:'⛈️ Heavy Showers',
+      95:'⛈️ Thunderstorm', 96:'⛈️ Thunderstorm', 99:'⛈️ Thunderstorm',
+    };
+
+    function uvClass(uv) {
+      if (uv <= 2)  return ['uv-low',      'UV ' + uv + ' Low'];
+      if (uv <= 5)  return ['uv-moderate', 'UV ' + uv + ' Moderate'];
+      if (uv <= 7)  return ['uv-high',     'UV ' + uv + ' High ⚠️'];
+      if (uv <= 10) return ['uv-veryhigh', 'UV ' + uv + ' Very High ⚠️'];
+      return            ['uv-extreme',  'UV ' + uv + ' Extreme 🚨'];
+    }
+
+    function formatDate(dateStr) {
+      const d = new Date(dateStr);
+      return d.toLocaleDateString('en-GB', { weekday: 'short', day: 'numeric', month: 'short' });
+    }
+
+    async function loadWeather(containerId, lat, lon, locationName) {
+      const el = document.getElementById(containerId);
+      if (!el) return;
+      el.innerHTML = '<div class="weather-loading">Loading live weather...</div>';
+      try {
+        const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,apparent_temperature,weathercode,uv_index,windspeed_10m,relativehumidity_2m&timezone=Europe%2FRome`;
+        const res = await fetch(url);
+        const data = await res.json();
+        const c = data.current;
+
+        const icon = WMO[c.weathercode] || '🌡️';
+        const temp = Math.round(c.temperature_2m);
+        const feels = Math.round(c.apparent_temperature);
+        const uv   = Math.round(c.uv_index);
+        const wind = Math.round(c.windspeed_10m);
+        const hum  = c.relativehumidity_2m;
+        const [cls, label] = uvClass(uv);
+
+        const updated = new Date(c.time).toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' });
+
+        el.innerHTML = `
+          <div class="weather-header">🌤️ Live Weather — ${locationName}</div>
+          <div class="weather-live">
+            <div class="weather-main">
+              <span class="weather-icon-big">${icon.split(' ')[0]}</span>
+              <div class="weather-temp-big">${temp}°C</div>
+              <div class="weather-feels">Feels like ${feels}°C</div>
+            </div>
+            <div class="weather-details">
+              <div class="weather-detail-row"><span>💨 Wind</span><span>${wind} km/h</span></div>
+              <div class="weather-detail-row"><span>💧 Humidity</span><span>${hum}%</span></div>
+              <div class="weather-detail-row"><span>🕶️ UV Index</span><span class="weather-uv ${cls}">${label}</span></div>
+            </div>
+          </div>
+          <div class="weather-updated">Updated ${updated} local time</div>`;
+      } catch(e) {
+        el.innerHTML = '<div class="weather-error">⚠️ Could not load weather — check connection</div>';
+      }
+    }
+
+    // Load live weather for all locations
+    loadWeather('weather-milan1',  45.4654, 9.1859,  'Milan');
+    loadWeather('weather-milan2',  45.4654, 9.1859,  'Milan');
+    loadWeather('weather-tuscany', 44.0731, 10.4836, 'Barga, Tuscany');
+    loadWeather('weather-tuscany2',44.0731, 10.4836, 'Barga, Tuscany');
+    loadWeather('weather-turin',   45.0703, 7.6869,  'Turin');
+    loadWeather('weather-lakes',   45.7833, 9.3500,  'Oggiono, Lakes');
+    loadWeather('weather-reunion', 45.4654, 9.1859,  'Milan Linate');
+
   </script>
 </body>
 </html>
